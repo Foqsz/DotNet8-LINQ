@@ -8,7 +8,7 @@ namespace DotNet8_LINQ.Sintaxe_de_Consulta;
 
 class LINQqueryConsulta
 {
-    static void Main(string[] args)
+    static void Main1(string[] args)
     {
 
         Console.WriteLine("LINQ");

@@ -6,6 +6,6 @@
     <RootNamespace>DotNet8_LINQ</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
+  </PropertyGroup> 
 
 </Project>
