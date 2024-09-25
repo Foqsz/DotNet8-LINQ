@@ -18,6 +18,18 @@ public class FonteDeDados
         return numeros;
     }
 
+    public static int[] GetIdades()
+    {
+        var idades = new[] { 30, 33, 35, 36, 40, 30, 33, 36, 30, 40 };
+        return idades;
+    }
+
+    public static string[] GetNomes()
+    {
+        var nomes = new[] { "Paulo", "MARIA", "paulo", "Amanda", "maria", "amannda" };
+        return nomes;
+    }
+
     public static List<int> GetListaNegra()
     {
 
