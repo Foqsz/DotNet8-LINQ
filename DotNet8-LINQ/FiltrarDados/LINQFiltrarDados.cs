@@ -179,3 +179,40 @@ foreach (var aluno in alunosAprovados)
 {
     Console.WriteLine(aluno.Nome);
 }
+
+List<int> fonte1aula2 = new List<int>() { 1, 2, 3, 4, 5, 6 };
+List<int> fonte2aula2 = new List<int>() { 1, 3, 5, 8, 9, 10 };
+
+//var resultado fonte1. Intersect(fonte2).ToList();
+var resultadxo = (from num in fonte1
+                 select num).Intersect(fonte2).ToList();
+foreach (var item in resultadxo)
+{
+    Console.WriteLine(item);
+}
+
+string[] paises1 = { "Brasil", "USA", "UK", "Argentina", "China" }; 
+string[] paises2 = { "Brasil", "uk", "Argentina", "França", "Japão" };
+
+var resultadoPaises = paises1.Intersect(paises2, StringComparer.OrdinalIgnoreCase).ToList();
+
+foreach (var pais in resultadoPaises)
+{
+    Console.WriteLine(pais);
+}
+
+var turmaA = FonteDeDados.GetTurmaA();
+var turmaB = FonteDeDados.GetTurmaB();
+
+var consulta2 = turmaA.Select(p => p.Nascimento.Year).Intersect(turmaB.Select(p => p.Nascimento.Year));
+
+var alunosTurmaAComMesmoAnoNascimento = turmaA.IntersectBy(turmaB.Select(p => p.Nascimento.Year),
+                                        p => p.Nascimento.Year);
+
+Console.WriteLine("Turma A - Alunos com mesma ano de nascimento da turma B");
+
+foreach (var aluno in alunosTurmaAComMesmoAnoNascimento)
+{
+    Console.WriteLine(aluno.Nome + " ");
+}
+Console.WriteLine("Total de Alunos : " + alunosTurmaAComMesmoAnoNascimento.Count());
