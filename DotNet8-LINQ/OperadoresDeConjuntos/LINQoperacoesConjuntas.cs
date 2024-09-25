@@ -112,6 +112,43 @@ class LINQoperacoesConjuntas
             Console.WriteLine(aluno.Nome + " ");
         }
         Console.WriteLine("Total de Alunos : " + alunosTurmaAComMesmoAnoNascimento.Count());
+
+        List<int> fonte1Union = new List<int>() { 1, 2, 3, 4, 5, 6 };
+        List<int> fonte2Union = new List<int>() { 1, 3, 5, 8, 9, 10 };
+
+        var resultadoUnion = fonte1Union.Union(fonte2Union).ToList();
+
+        foreach (var item in resultadoUnion)
+        {
+            Console.Write(" " + item);
+        }
+
+        string[] fonte1Paises = { "Brasil", "USA", "UK", "Argentina", "China" };
+        string[] fonte2Paises = { "Brasil", "uk", "Argentina", "França", "Japão" };
+
+        var resultadoPaisesUnion = fonte1Paises.Union(fonte2Paises, StringComparer.OrdinalIgnoreCase).ToList();
+
+        Console.WriteLine("");
+
+        foreach (var pais in resultadoPaisesUnion)
+        {
+            Console.Write($"{pais} ");
+        }
+
+        var turmaAUnion = FonteDeDados.GetTurmaA();
+        var turmaBUnion = FonteDeDados.GetTurmaB();
+
+        var consultaUnion = turmaAUnion.Select(p => p.Nome).Union(turmaBUnion.Select(p => p.Nome));
+
+        var turmasUnionBy = turmaAUnion.UnionBy(turmaBUnion, p => p.Nome);
+
+        Console.WriteLine("");
+        Console.WriteLine("Alunos nomes distintos\n");
+
+        foreach (var aluno in turmasUnionBy)
+        {
+            Console.WriteLine($"{aluno.Nome} {aluno.Nascimento.Year} {aluno.Idade}");
+        }
     }
 }
 
