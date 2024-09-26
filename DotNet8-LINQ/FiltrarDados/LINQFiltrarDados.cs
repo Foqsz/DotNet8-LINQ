@@ -185,13 +185,13 @@ List<int> fonte2aula2 = new List<int>() { 1, 3, 5, 8, 9, 10 };
 
 //var resultado fonte1. Intersect(fonte2).ToList();
 var resultadxo = (from num in fonte1
-                 select num).Intersect(fonte2).ToList();
+                  select num).Intersect(fonte2).ToList();
 foreach (var item in resultadxo)
 {
     Console.WriteLine(item);
 }
 
-string[] paises1 = { "Brasil", "USA", "UK", "Argentina", "China" }; 
+string[] paises1 = { "Brasil", "USA", "UK", "Argentina", "China" };
 string[] paises2 = { "Brasil", "uk", "Argentina", "França", "Japão" };
 
 var resultadoPaises = paises1.Intersect(paises2, StringComparer.OrdinalIgnoreCase).ToList();
@@ -235,7 +235,7 @@ var resultadoPaisesUnion = fonte1Paises.Union(fonte2Paises, StringComparer.Ordin
 Console.WriteLine("");
 
 foreach (var pais in resultadoPaisesUnion)
-{ 
+{
     Console.Write($"{pais} ");
 }
 
@@ -252,4 +252,46 @@ Console.WriteLine("Alunos nomes distintos\n");
 foreach (var aluno in turmasUnionBy)
 {
     Console.WriteLine($"{aluno.Nome} {aluno.Nascimento.Year} {aluno.Idade}");
+}
+
+List<string> nomesOrderBy = new List<string>() { "Paulo", "Tarcisio", "Amaral", "Pedro", "Debora", "Helena", "Percival", "Manoel", "Rute", "Jose" };
+
+var lista = nomesOrderBy.OrderBy(x => x).ToList();
+
+foreach (var item in lista)
+{
+    Console.WriteLine(item + " ");
+}
+
+Console.WriteLine("");
+Console.WriteLine("");
+
+var alunosOrderBy = FonteDeDados.GetAlunos();
+
+
+var lista1Aln = alunosOrderBy.OrderBy(p => p.Nome);
+
+var lista2Aln = alunosOrderBy.Where(p => p.Nome.Contains("a")).OrderBy(p => p.Nome);
+
+var lista3Aln = alunosOrderBy.Where(p => p.Nome.Contains("a")).OrderBy(p => p.Nome).ThenBy(p => p.Idade);
+
+var lista4Aln = alunosOrderBy.Where(p => p.Nome.Contains("a")).OrderByDescending(p => p.Nome).ThenByDescending(p => p.Idade);
+
+foreach (var item in lista4Aln)
+{
+    Console.WriteLine($"{item.Nome} {item.Idade}");
+}
+
+Console.WriteLine("");
+
+List<string> nomesRervese = new List<string>() { "Pedro", "Tania", "Amaral", "Penita", "Debora" };
+
+//var lista nomes. Reverse();
+
+IEnumerable<string> listal = nomes.AsEnumerable().Reverse();
+IQueryable<string> lista2 = nomes.AsQueryable().Reverse();
+
+foreach (var nome in listal)
+{
+    Console.Write($"{nome} ");
 }

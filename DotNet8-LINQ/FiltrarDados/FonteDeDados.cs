@@ -47,7 +47,7 @@ public class FonteDeDados
             new Aluno() { Nome = "Maria", Idade = 42, Nota = 7, Cursos = new List<string> { "VB.NET", "ASPNET" } },
             new Aluno() { Nome = "Manoel", Idade = 34, Nota = 8, Cursos = new List<string> { "C#", "SQL" } },
             new Aluno() { Nome = "Amanda", Idade = 21, Nota = 5, Cursos = new List<string> { "Java", "HTML" } },
-            new Aluno() { Nome = "Carlos", Idade = 18, Nota = 10, Cursos = new List<string> { "Python", "CSS" } },
+            new Aluno() { Nome = "Pedro", Idade = 18, Nota = 10, Cursos = new List<string> { "Python", "CSS" } },
             new Aluno() { Nome = "Alicia", Idade = 15, Nota = 9, Cursos = new List<string> { "JavaScript", "PHP" } }
         };
         return alunos;
