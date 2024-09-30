@@ -1,6 +1,7 @@
 ﻿using DotNet8_LINQ;
 using DotNet8_LINQ.Filtrar_Dados;
 using DotNet8_LINQ.FiltrarDados;
+using DotNet8_LINQ.OperadoresDeQuantificacao;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -312,7 +313,7 @@ var resultadosCount3 = cursos.Count(c => c.Contains('P'));
 
 Console.WriteLine(resultadosCount);
 Console.WriteLine(resultadosCount2);
-Console.WriteLine(resultadosCount3); 
+Console.WriteLine(resultadosCount3);
 
 int[] numerosAg = { 3, 5, 7, 9 };
 
@@ -375,3 +376,89 @@ Console.WriteLine($"Maior idade {maiorIdade} Maior salario - {maiorSalario}");
 Console.WriteLine($"Menor idade {menorIdade} Menor salario - {menorSalario}");
 Console.WriteLine($"Maior salario filtrado entre idades: {maxSalario}");
 Console.WriteLine($"Salario filtrado menor: {menorSalarioFiltrado}");
+
+Console.WriteLine("");
+
+Console.WriteLine("LINQ");
+Console.WriteLine("Operadores de quantificacao");
+
+int[] numerosQuant = { 10, 22, 32, 44, 56, 64, 78 };
+
+var resultadoQuant = numerosQuant.All(n => n % 2 == 0);
+
+var resultadoQuant2 = (from n in numerosQuant select n).All(n => n % 2 == 0);
+
+Console.WriteLine($"{(resultadoQuant ? "Todos são pares" : "Nem todos são pares")}");
+Console.WriteLine(resultadoQuant2);
+
+var funcionarioAll = FonteDeDados.GetFuncionarios();
+
+var todosSalariosAcima2500 = funcionarioAll.All(f => f.Salario > 2500.00m);
+
+var todosIdadeMaiorQ21 = funcionarioAll.All(f => f.Idade > 21);
+
+var todosNomesTemLetraA = funcionarioAll.All(f => f.Nome.Contains('a'));
+
+Console.WriteLine($"{todosSalariosAcima2500} - {todosIdadeMaiorQ21} - {todosNomesTemLetraA}");
+
+var resultadoConsulta = (from n in funcionarioAll select n).All(n => n.Salario > 3500);
+
+Console.WriteLine($"{(resultadoConsulta ? "Todos os salários são maior que 3500" : "Nem todos são maiores que 3500")}");
+
+Console.WriteLine("LINQ - OP DE QUANTIFICACAO 2");
+
+var pessoasQt = FonteDeDados.GetPessoas();
+
+var nomesDog = from pessoa in pessoasQt
+               where pessoa.Cachorros.All(pet => pet.Idade > 5)
+               select pessoa.Nome;
+
+foreach (string nome in nomesDog)
+{
+    Console.WriteLine(nome);
+}
+
+string[] cursosAny = { "C#", "Java", "Phyton", "PHP", "ASP.NET", "Node" };
+
+var existemCursos = cursosAny.Any();
+
+var existemCursosMaiorQue2 = cursosAny.Any(c => c.Length > 2);
+
+var resultadoP = (from c in cursosAny select c).Any(c => c.Contains('P'));
+
+Console.WriteLine($" {existemCursos}- {existemCursosMaiorQue2} -{resultadoP}");
+
+List<Cachorro> cachorros = new()
+{
+new Cachorro() { Nome = "Bilu", Idade = 6, Vacinado = true},
+new Cachorro() { Nome = "Canelinha", Idade = 3, Vacinado = false},
+new Cachorro() { Nome = "Pipoca", Idade = 8, Vacinado = true},
+};
+
+// Verifica se existem cachorros com mais de 2 anos e não vacinados bool naoVacinados cachorros. Any (p => p. Idade > 2 && p. Vacinado == false);
+bool naoVacinados = cachorros.Any (p => p. Idade > 2 && p. Vacinado == false);
+
+
+var resultadoDog = (from c in cachorros
+                    select c).Any(p => p.Idade > 3 && p.Vacinado == false);
+
+Console.WriteLine($"{(naoVacinados ? "Existem" : "Não existem")} cães com mais de 2 anos não vacinados");
+
+List<Aluno> alunosComparer = new List<Aluno>()
+        {
+            new Aluno() { Nome = "Maria", Pontos = 275 },
+            new Aluno() { Nome = "Marta", Pontos = 375 },
+            new Aluno() { Nome = "Pedro", Pontos = 299 }
+        };
+
+AlunoComparer alunoComparer = new AlunoComparer();
+
+var aluno1 = new Aluno() { Nome = "Maria", Pontos = 275 };
+
+var resultadoAl1 = alunosComparer.Contains(aluno1, alunoComparer);
+
+// Sintaxe de consulta
+var resultadoAl2 = (from num in alunos
+                  select num).Contains(aluno1, alunoComparer);
+
+Console.WriteLine($"{resultadoAl1} {resultadoAl2}");
