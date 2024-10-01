@@ -44,11 +44,16 @@ public class FonteDeDados
     {
         List<Aluno> alunos = new()
         {
-            new Aluno() { Nome = "Maria", Idade = 42, Nota = 7, Cursos = new List<string> { "VB.NET", "ASPNET" } },
-            new Aluno() { Nome = "Manoel", Idade = 34, Nota = 8, Cursos = new List<string> { "C#", "SQL" } },
-            new Aluno() { Nome = "Amanda", Idade = 21, Nota = 5, Cursos = new List<string> { "Java", "HTML" } },
-            new Aluno() { Nome = "Pedro", Idade = 18, Nota = 10, Cursos = new List<string> { "Python", "CSS" } },
-            new Aluno() { Nome = "Alicia", Idade = 15, Nota = 9, Cursos = new List<string> { "JavaScript", "PHP" } }
+            new Aluno() { AlunoId = 1, Curso = "Fisica", Nome = "Vitor", Sexo = 'M', Idade = 18 },
+            new Aluno() { AlunoId = 2, Curso = "Quimica", Nome = "Jorge", Sexo = 'M', Idade = 21 },
+            new Aluno() { AlunoId = 3, Curso = "Engenharia", Nome = "Bernardo", Sexo = 'M', Idade = 18 },
+            new Aluno() { AlunoId = 4, Curso = "Moda", Nome = "Danusa", Sexo = 'F', Idade = 19 },
+            new Aluno() { AlunoId = 5, Curso = "Moda", Nome = "Carla", Sexo = 'F', Idade = 20 },
+            new Aluno() { AlunoId = 6, Curso = "Fisica", Nome = "Helio", Sexo = 'M', Idade = 21 },
+            new Aluno() { AlunoId = 7, Curso = "Engenharia", Nome = "Bianca", Sexo = 'F', Idade = 19 },
+            new Aluno() { AlunoId = 8, Curso = "Quimica", Nome = "Vilma", Sexo = 'F', Idade = 20 },
+            new Aluno() { AlunoId = 9, Curso = "Engenharia", Nome = "Amanda", Sexo = 'F', Idade = 18 },
+            new Aluno() { AlunoId = 10, Curso = "Quimica", Nome = "Silvia", Sexo = 'F', Idade = 21 }
         };
         return alunos;
     }
