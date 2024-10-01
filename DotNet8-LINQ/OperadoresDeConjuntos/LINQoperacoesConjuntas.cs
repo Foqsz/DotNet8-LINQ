@@ -149,6 +149,7 @@ class LINQoperacoesConjuntas
         {
             Console.WriteLine($"{aluno.Nome} {aluno.Nascimento.Year} {aluno.Idade}");
         }
+
     }
 }
 
