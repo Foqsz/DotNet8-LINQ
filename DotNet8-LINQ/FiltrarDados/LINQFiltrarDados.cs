@@ -437,7 +437,7 @@ new Cachorro() { Nome = "Pipoca", Idade = 8, Vacinado = true},
 };
 
 // Verifica se existem cachorros com mais de 2 anos e não vacinados bool naoVacinados cachorros. Any (p => p. Idade > 2 && p. Vacinado == false);
-bool naoVacinados = cachorros.Any (p => p. Idade > 2 && p. Vacinado == false);
+bool naoVacinados = cachorros.Any(p => p.Idade > 2 && p.Vacinado == false);
 
 
 var resultadoDog = (from c in cachorros
@@ -460,7 +460,7 @@ var resultadoAl1 = alunosComparer.Contains(aluno1, alunoComparer);
 
 // Sintaxe de consulta
 var resultadoAl2 = (from num in alunos
-                  select num).Contains(aluno1, alunoComparer);
+                    select num).Contains(aluno1, alunoComparer);
 
 Console.WriteLine($"{resultadoAl1} {resultadoAl2}");
 
@@ -549,7 +549,11 @@ foreach (var grupo in gruposTo)
 }
 
 //ExemploInnerJoin();
-ExemploLeftJoin();
+//ExemploLeftJoin();
+//ExemploRightJoin();
+//ExemploFullJoin();
+//ExemploCrossJoin();
+ExemploGroupJoin();
 static void ExemploInnerJoin()
 {
     using (var contexto = new AppDbContext())
@@ -609,6 +613,121 @@ static void ExemploLeftJoin()
             Console.WriteLine($"{funcionario.NomeFuncionario}" +
                               $"\t\t{funcionario.CargoFuncionario}" +
                               $"\t\t{funcionario.NomeSetor}");
+        }
+        Console.ReadLine();
+    }
+}
+
+static void ExemploRightJoin()
+{
+    using (var contexto = new AppDbContext())
+    {
+        var rightJoin = (from s in contexto.Setores
+                         join f in contexto.Funcionarios
+                         on s.SetorId equals f.SetorId
+                         into SetorFunciGrupo
+                         from funcionario in SetorFunciGrupo.DefaultIfEmpty()
+                         select new
+                         {
+                             NomeFuncionario = funcionario.FuncionarioNome,
+                             CargoFuncionario = funcionario.FuncionarioCargo,
+                             NomeSetor = s.SetorNome
+                         }).ToList();
+
+        Console.WriteLine("Funcionario\t\tCargo\t\t\tSetor");
+
+        foreach (var funcionario in rightJoin)
+        {
+            Console.WriteLine($"{funcionario.NomeFuncionario}" +
+                              $"\t\t {funcionario.CargoFuncionario}" +
+                              $"\t\t {funcionario.NomeSetor}");
+        }
+        Console.ReadLine();
+    }
+}
+
+static void ExemploFullJoin()
+{
+    using (var contexto = new AppDbContext())
+    {
+        var leftJoin = from f in contexto.Funcionarios
+                       join s in contexto.Setores on f.SetorId equals s.SetorId
+                       into set
+                       from setor in set.DefaultIfEmpty()
+                       select new
+                       {
+                           Nome = f.FuncionarioNome,
+                           Cargo = f.FuncionarioCargo,
+                           Setor = setor.SetorNome
+                       };
+
+        var rightJoin = from s in contexto.Setores
+                        join f in contexto.Funcionarios on s.SetorId equals f.SetorId
+                        into funci
+                        from funcionario in funci.DefaultIfEmpty()
+                        select new
+                        {
+                            Nome = funcionario.FuncionarioNome,
+                            Cargo = funcionario.FuncionarioCargo,
+                            Setor = s.SetorNome
+                        };
+
+        var fullJoin = leftJoin.Union(rightJoin);
+
+        Console.WriteLine("Funcionario\t\tCargo\t\tSetor");
+
+        foreach (var resultado in fullJoin)
+        {
+            Console.WriteLine(resultado.Nome + "\t\t" +
+                              resultado.Cargo + "\t\t" +
+                              resultado.Setor);
+        }
+
+    }
+}
+
+static void ExemploCrossJoin()
+{
+    using (var contexto = new AppDbContext())
+    {
+        var crossJoin = from f in contexto.Funcionarios
+                        from s in contexto.Setores
+                        select new
+                        {
+                            Nome = f.FuncionarioNome,
+                            Cargo = f.FuncionarioCargo,
+                            Setor = s.SetorNome
+                        };
+
+        Console.WriteLine("Funcionario\t\tCargo\t\t\tSetor");
+
+        foreach (var resultado in crossJoin)
+        {
+            Console.WriteLine(resultado.Nome + "\t\t" + resultado.Cargo + "\t\t\t" + resultado.Setor);
+        }
+    }
+}
+
+static void ExemploGroupJoin()
+{
+    using (var contexto = new AppDbContext())
+    {
+        var groupJoin = contexto.Setores
+                        .GroupJoin(contexto.Funcionarios,
+                        s => s.SetorId, f => f.SetorId,
+                        (f, funcionariosGrupo) => new
+                        {
+                            Funcionarios = funcionariosGrupo,
+                            NomeSetor = f.SetorNome
+                        }).ToList();
+
+        foreach (var item in groupJoin)
+        {
+            Console.WriteLine(item.NomeSetor);
+            foreach (var func in item.Funcionarios)
+            {
+                Console.WriteLine($"\t {func.FuncionarioNome}");
+            }
         }
         Console.ReadLine();
     }
