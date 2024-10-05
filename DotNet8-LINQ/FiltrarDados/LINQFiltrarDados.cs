@@ -573,7 +573,7 @@ foreach (var aluno in consulta)
 Console.WriteLine("LIN");
 Console.WriteLine("Operadores de Elemento");
 
-List<int> numerosNew = new List<int>() { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+List<int> numerosNew = new List<int>() { 10, 20, 30, 40, 50, 60, 70, 80, 90, 90 };
 
 int resultadoNew = numerosNew.ElementAtOrDefault(5);
 Console.WriteLine(resultadoNew);
@@ -583,6 +583,23 @@ Console.WriteLine($"\n{alunoNew.Id} {alunoNew.Nome} {alunoNew.CursoId}");
 
 var nomeAluno = FonteDeDados.GetAlunosAtt().Select(a => a.Nome).ElementAtOrDefault(5);
 Console.WriteLine($"\n{nomeAluno}");
+
+Console.WriteLine("First e FirstOrDefault");
+int resultadoFirst = numerosNew.FirstOrDefault();
+int resultadoFirst2 = numerosNew.FirstOrDefault(n => n > 20);
+
+Console.WriteLine(resultadoFirst); // 10
+Console.WriteLine(resultadoFirst2); // 30
+
+//InvalidOperationException
+int resultadoFirst3 = numerosNew.FirstOrDefault(n => n > 90);
+Console.WriteLine(resultadoFirst3);
+
+//Tipo Complexo
+var alunoFirst = FonteDeDados.GetAlunosAtt().FirstOrDefault();
+var alunoFirst1 = FonteDeDados.GetAlunosAtt().FirstOrDefault(a => a.CursoId == 30);
+Console.WriteLine($"{alunoFirst.Id} {alunoFirst.Nome} {alunoFirst.CursoId}");
+Console.WriteLine($"{alunoFirst1.Id} {alunoFirst1.Nome} {alunoFirst1.CursoId}");
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
