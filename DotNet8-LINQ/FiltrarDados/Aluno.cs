@@ -8,9 +8,12 @@ namespace DotNet8_LINQ.Filtrar_Dados
 {
     public class Aluno
     {
+        public int Id { get; set; }
         public string Nome { get; set; } = string.Empty;
         public int AlunoId { get; set; }
         public int Idade { get; set; }
+        public int EnderecoId { get; set; }
+        public int CursoId { get; set; }
         public int Nota { get; set; }
         public int Pontos { get; set; }
         public char Sexo { get; set; }

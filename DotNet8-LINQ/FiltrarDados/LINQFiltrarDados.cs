@@ -548,6 +548,28 @@ foreach (var grupo in gruposTo)
     }
 }
 
+
+Console.WriteLine("New");
+
+var consulta = from aluno in FonteDeDados.GetAlunosAtt()
+               join endereco in FonteDeDados.GetEnderecos()
+               on aluno.EnderecoId equals endereco.Id
+               join curso in FonteDeDados.GetCursos()
+               on aluno.CursoId equals curso.Id
+               select new
+               {
+                   ID = aluno.Id,
+                   AlunoNome = aluno.Nome,
+                   CursoNome = curso.Nome,
+                   EnderecoLocal = endereco.Local,
+               };
+
+foreach (var aluno in consulta)
+{
+    Console.WriteLine($"ID = {aluno.ID}\t Nome = {aluno.AlunoNome} " +
+                      $"\tEndereco = {aluno.EnderecoLocal}\t Curso = {aluno.CursoNome}");
+}
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
@@ -731,4 +753,5 @@ static void ExemploGroupJoin()
         }
         Console.ReadLine();
     }
+
 }
