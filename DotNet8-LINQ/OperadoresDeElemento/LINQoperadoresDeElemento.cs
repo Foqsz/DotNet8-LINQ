@@ -43,6 +43,10 @@ namespace DotNet8_LINQ.OperadoresDeElemento
 
             int resultadoLast6 = numerosNew.Last(num => num < 90);
             Console.WriteLine(resultadoLast6);
+
+            int resultadoSingle = numerosNew.SingleOrDefault(n => n > 90);
+            Console.WriteLine(resultadoSingle);
+
         }
     }
 }

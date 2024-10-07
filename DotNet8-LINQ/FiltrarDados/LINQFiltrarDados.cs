@@ -620,6 +620,9 @@ Console.WriteLine(resultadoLast5);
 int resultadoLast6 = numerosNew.LastOrDefault(num => num < 90);
 Console.WriteLine(resultadoLast6);
 
+int resultadoSingle = numerosNew.SingleOrDefault(n => n > 90);
+Console.WriteLine(resultadoSingle);
+
  
 
 //ExemploInnerJoin();
