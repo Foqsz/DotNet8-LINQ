@@ -601,6 +601,27 @@ var alunoFirst1 = FonteDeDados.GetAlunosAtt().FirstOrDefault(a => a.CursoId == 3
 Console.WriteLine($"{alunoFirst.Id} {alunoFirst.Nome} {alunoFirst.CursoId}");
 Console.WriteLine($"{alunoFirst1.Id} {alunoFirst1.Nome} {alunoFirst1.CursoId}");
 
+int resultadoLast = numerosNew.Last();
+Console.WriteLine(resultadoLast);
+
+int resultadoLast2 = numerosNew.Last(num => num < 50);
+Console.WriteLine(resultadoLast2);
+
+List<int> numerosLast = new List<int>() { };
+int resultadoLast3 = numerosNew.Last();
+Console.WriteLine(resultadoLast3);
+
+//int resultadoLast4 = numerosNew.Last(num => num > 90); invalid exception por n ter numero maior q 90
+//Console.WriteLine(resultadoLast4);
+
+int resultadoLast5 = numerosNew.LastOrDefault(num => num > 90);
+Console.WriteLine(resultadoLast5);
+
+int resultadoLast6 = numerosNew.LastOrDefault(num => num < 90);
+Console.WriteLine(resultadoLast6);
+
+ 
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
