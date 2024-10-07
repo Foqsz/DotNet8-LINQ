@@ -1,4 +1,5 @@
 ﻿using DotNet8_LINQ.Filtrar_Dados;
+using DotNet8_LINQ.FiltrarDados;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,25 @@ namespace DotNet8_LINQ.OperadoresDeElemento
 
             int resultadoSingle = numerosNew.SingleOrDefault(n => n > 90);
             Console.WriteLine(resultadoSingle);
+
+            IEnumerable<int> resultadoDefault = numerosNew.DefaultIfEmpty(); // se a coleção estiver vazia, vai retornar 0, ou se eu definir o valor padrao e estiver vazia, retorna o valor que eu defini
+            foreach (int num in resultadoDefault)
+            {
+                Console.Write(" , " + num);
+            }
+
+            var filmes = new List<Filme>
+            {
+                new Filme("Titanic", 7),
+                new Filme("De volta para o futuro", 8),
+                new Filme("Mulher Maravilha", 6)
+            };
+
+            var filmeFavorito = new Filme("O quinto elemento", 10);
+
+            var filmeAAssistir = filmes.Where(f => f.Avaliacao >= 8).DefaultIfEmpty(filmeFavorito).First();
+            Console.WriteLine("");
+            Console.WriteLine(filmeAAssistir.Titulo);
 
         }
     }
