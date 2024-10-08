@@ -687,7 +687,7 @@ List<int> numerosSkip = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3 };
 List<int> resultadoSkip = numerosSkip.Where(n => n > 3).Skip(4).ToList();
 foreach (var num in resultadoSkip)
 {
-    Console.Write($"\n{num} Skip"); 
+    Console.Write($"\n{num} Skip");
 }
 
 List<int> resultadoSkipWhile = numerosSkip.SkipWhile(num => num < 5).ToList();
@@ -701,6 +701,35 @@ foreach (var nome in resultadoSkipWhileName)
 {
     Console.Write($"\n{nome} SkipWhile Name");
 }
+
+int RegistrosPorPagina = 4;
+int NumeroPagina;
+
+do
+{
+    Console.WriteLine("\nInforme o no. de página entre 1 e 4: ");
+    if (int.TryParse(Console.ReadLine(), out NumeroPagina))
+    {
+        if (NumeroPagina > 0 && NumeroPagina < 5)
+        {
+            var alunosBd = FonteDeDados.GetAlunosNew()
+                                       .Skip((NumeroPagina - 1) * RegistrosPorPagina)
+                                       .Take(RegistrosPorPagina).ToList();
+
+            Console.WriteLine("\nPag. : " + NumeroPagina);
+
+            foreach (var aluno in alunosBd)
+            {
+                Console.WriteLine($"Id: {aluno.Id} - Nome: {aluno.Nome} - Curso: {aluno.Curso}");
+            }
+        }
+    }
+    else
+    {
+        Console.WriteLine("Informe o no. de página válido");
+    }
+
+} while (true);
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();

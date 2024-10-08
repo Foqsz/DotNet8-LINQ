@@ -70,5 +70,7 @@ public class LINQoperadoresDeParticionamento
             Console.Write($"\n{nome} SkipWhile Name");
         }
 
+
+
     }
 }
