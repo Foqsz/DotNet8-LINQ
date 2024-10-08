@@ -702,41 +702,63 @@ foreach (var nome in resultadoSkipWhileName)
     Console.Write($"\n{nome} SkipWhile Name");
 }
 
-int RegistrosPorPagina = 4;
-int NumeroPagina;
+//int RegistrosPorPagina = 4;
+//int NumeroPagina;
 
-do
+//do
+//{
+//    Console.WriteLine("\nInforme o no. de página entre 1 e 4: ");
+//    if (int.TryParse(Console.ReadLine(), out NumeroPagina))
+//    {
+//        if (NumeroPagina > 0 && NumeroPagina < 5)
+//        {
+//            var alunosBd = FonteDeDados.GetAlunosNew()
+//                                       .Skip((NumeroPagina - 1) * RegistrosPorPagina)
+//                                       .Take(RegistrosPorPagina).ToList();
+
+//            Console.WriteLine("\nPag. : " + NumeroPagina);
+
+//            foreach (var aluno in alunosBd)
+//            {
+//                Console.WriteLine($"Id: {aluno.Id} - Nome: {aluno.Nome} - Curso: {aluno.Curso}");
+//            }
+//        }
+//    }
+//    else
+//    {
+//        Console.WriteLine("Informe o no. de página válido");
+//    }
+
+//} while (true);
+
+Console.WriteLine("LINQ");
+Console.WriteLine("Operadores de Agregação");
+
+var numerosRange = Enumerable.Range(1, 10).Reverse();
+var numerosPares = Enumerable.Range(10, 30).Where(n => n % 2 == 0);
+var numerosAoQuadrado = Enumerable.Range(1, 10).Select(n => n * n);
+
+foreach (var numero in numerosRange)
 {
-    Console.WriteLine("\nInforme o no. de página entre 1 e 4: ");
-    if (int.TryParse(Console.ReadLine(), out NumeroPagina))
-    {
-        if (NumeroPagina > 0 && NumeroPagina < 5)
-        {
-            var alunosBd = FonteDeDados.GetAlunosNew()
-                                       .Skip((NumeroPagina - 1) * RegistrosPorPagina)
-                                       .Take(RegistrosPorPagina).ToList();
-
-            Console.WriteLine("\nPag. : " + NumeroPagina);
-
-            foreach (var aluno in alunosBd)
-            {
-                Console.WriteLine($"Id: {aluno.Id} - Nome: {aluno.Nome} - Curso: {aluno.Curso}");
-            }
-        }
-    }
-    else
-    {
-        Console.WriteLine("Informe o no. de página válido");
-    }
-
-} while (true);
+    Console.Write(" " + numero);
+}
+Console.WriteLine();
+foreach (var numeroPar in numerosPares)
+{
+    Console.Write(" " + numeroPar);
+}
+Console.WriteLine();
+foreach (var numerosQuadrado in numerosAoQuadrado)
+{
+    Console.Write(" " + numerosQuadrado);
+}
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
 //ExemploFullJoin();
 //ExemploCrossJoin();
-ExemploGroupJoin();
+//ExemploGroupJoin();
 static void ExemploInnerJoin()
 {
     using (var contexto = new AppDbContext())

@@ -15,7 +15,7 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //define o provedor do BD e a string de conexão
-        optionsBuilder.UseSqlServer("Server=localhost; Initial Catalog=Northwind; Integrated Security=True; Trusted_Connection=true; TrustServerCertificate=True");
+        optionsBuilder.UseSqlServer("Server=localhost; Initial Catalog=LinqDB; Integrated Security=True; Trusted_Connection=true; TrustServerCertificate=True");
         
         //exibe as consultas SQL no console
         optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
