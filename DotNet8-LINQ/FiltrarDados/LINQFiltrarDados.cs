@@ -767,6 +767,30 @@ foreach (var num in numerosRpt)
     Console.WriteLine(num);
 }
 
+var colecaoVazia1 = Enumerable.Empty<string>();
+var colecaoVazia2 = Enumerable.Empty<Aluno>();
+
+Console.WriteLine("\nColeção de strings\n");
+Console.WriteLine("Count: {0} ", colecaoVazia1.Count());
+Console.WriteLine("Tipo : {0}", colecaoVazia1.GetType().Name);
+
+Console.WriteLine("\nColeção de objetos Aluno\n");
+Console.WriteLine("Count: {0} ", colecaoVazia2.Count());
+Console.WriteLine("Tipo: {0} ", colecaoVazia2.GetType().Name);
+
+IEnumerable<int> result = GetData() ?? Enumerable.Empty<int>();
+
+foreach (var i in result)
+{
+    Console.WriteLine(i);
+}
+Console.WriteLine("Concluído");
+
+static IEnumerable<int> GetData()
+{
+    return null;
+}
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
