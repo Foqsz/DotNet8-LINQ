@@ -31,6 +31,20 @@ namespace DotNet8_LINQ.OperadoresDeGeracao
             {
                 Console.Write(" " + numerosQuadrado);
             }
+            Console.WriteLine();
+
+            var textos = Enumerable.Repeat("Deus é Fiel", 5);
+            var numerosRpt = Enumerable.Repeat(2024, 5);
+
+            foreach (string texto in textos)
+            {
+                Console.WriteLine(texto);
+            }
+
+            foreach (var num in numerosRpt)
+            {
+                Console.WriteLine(num);
+            }
         }
     }
 }
