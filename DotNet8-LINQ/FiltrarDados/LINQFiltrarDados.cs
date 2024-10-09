@@ -3,6 +3,7 @@ using DotNet8_LINQ.Context;
 using DotNet8_LINQ.Filtrar_Dados;
 using DotNet8_LINQ.FiltrarDados;
 using DotNet8_LINQ.OperadoresDeQuantificacao;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -942,6 +943,17 @@ Console.WriteLine($"soma: {soma}");
 Console.WriteLine($"média: {media}");
 Console.WriteLine($"mínimo: {minimo}");
 Console.WriteLine($"máximo: {maximo}");
+
+ArrayList listaArray = new ArrayList { 10, 20, 30 };
+
+var resultadoArray = listaArray.Cast<int>();
+
+//listaArray.Add("40");
+
+foreach (int i in resultadoArray)
+{
+    Console.WriteLine(i);
+}
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
