@@ -934,8 +934,8 @@ var numerosQ = new int[] { 5, 10, 20, 60, 72, 90, 102, 114 };
 
 double media = Queryable.Average(numerosQ.AsQueryable());
 int soma = Queryable.Sum(numerosQ.AsQueryable());
-int conta = Queryable.Count(numerosQ.AsQueryable()); 
-int maximo = Queryable.Max(numerosQ.AsQueryable()); 
+int conta = Queryable.Count(numerosQ.AsQueryable());
+int maximo = Queryable.Max(numerosQ.AsQueryable());
 int minimo = Queryable.Min(numerosQ.AsQueryable());
 
 Console.WriteLine($"quantidade: {conta}");
@@ -954,6 +954,21 @@ foreach (int i in resultadoArray)
 {
     Console.WriteLine(i);
 }
+
+
+List<object> dados = new List<object>()
+{
+    "Tania", "Maria", 50, "Manoel", 10, 20, 30, 40, "Tiago"
+};
+
+var dadosInt = dados.OfType<string>().ToList();
+
+foreach (var numero in dadosInt)
+{
+    Console.Write(numero + " ");
+} 
+Console.ReadLine();
+
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
