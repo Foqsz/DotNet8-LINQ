@@ -896,6 +896,23 @@ foreach (var funci in funcionarioPorCidade)
     }
 }
 
+int[] numAtt = new int[] { 1, 2, 3, 4, 5 };
+
+var resultadoNum = numAtt.AsEnumerable();
+var paisesEm = new List<string> { "US", "India", "UK", "Australia", "Canada" };
+
+foreach (var pais in resultadoNum)
+{
+    Console.Write(pais + " ");
+}
+
+Console.WriteLine("");
+
+foreach (var p in paisesEm)
+{
+    Console.Write(p + " ");
+}
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
