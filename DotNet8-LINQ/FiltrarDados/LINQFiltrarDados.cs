@@ -796,8 +796,10 @@ Console.WriteLine("LINQ - APPEND, PREPEND E ZIP");
 List<int> NumerosAppend = new List<int> { 1, 2, 3, 4 };
 
 var resultAppend = NumerosAppend.Append(5).ToList();
+var resultadPrepend = NumerosAppend.Prepend(0).ToList();
 
 Console.WriteLine(string.Join(", ", resultAppend));
+Console.WriteLine(string.Join(", ", resultadPrepend));
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
