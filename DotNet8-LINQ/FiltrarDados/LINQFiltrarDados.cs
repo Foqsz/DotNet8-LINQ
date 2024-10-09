@@ -793,13 +793,44 @@ static IEnumerable<int> GetData()
 
 Console.WriteLine("LINQ - APPEND, PREPEND E ZIP");
 
-List<int> NumerosAppend = new List<int> { 1, 2, 3, 4 };
+List<int> NumerosGlobal = new List<int> { 1, 2, 3, 4, 5 };
 
-var resultAppend = NumerosAppend.Append(5).ToList();
-var resultadPrepend = NumerosAppend.Prepend(0).ToList();
+var resultAppend = NumerosGlobal.Append(6).ToList();
+var resultadPrepend = NumerosGlobal.Prepend(0).ToList();
 
 Console.WriteLine(string.Join(", ", resultAppend));
 Console.WriteLine(string.Join(", ", resultadPrepend));
+
+string[] palavras = { "Um", "Dois", "Três", "Quatro" };
+
+var resultadoZip = NumerosGlobal.Zip(palavras, (prim, seg) => seg + " - " + prim);
+
+foreach (var item in resultadoZip)
+{
+    Console.WriteLine(item);
+}
+
+var seq1 = new[] { 1, 2, 3 };
+var seq2 = new[] { 10, 20, 30 };
+
+var resultadosq = seq1.Zip(seq2, (m, n) => m * n);
+
+foreach (var item in resultadosq)
+{
+    Console.WriteLine(item);
+}
+
+var estados = new[] { "São Paulo", "Rio de Janeiro", "Belo Horizonte" };
+var siglas = new[] { "SP", "RJ", "MG" };
+
+var resultadoes = estados.Zip(siglas, (x, y) => x + "-" + y);
+
+foreach (var item in resultadoes)
+{
+    Console.WriteLine(item);
+}
+
+
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
