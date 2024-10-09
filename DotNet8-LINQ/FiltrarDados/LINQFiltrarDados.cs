@@ -828,7 +828,7 @@ var resultadoes = estados.Zip(siglas, (x, y) => x + "-" + y);
 foreach (var item in resultadoes)
 {
     Console.WriteLine(item);
-} 
+}
 
 string[] paises = { "US", "UK", "India", "Russia", "China", "Brasil", "Peru" };
 
@@ -843,9 +843,32 @@ var alunosUp = FonteDeDados.GetAlunosUp();
 
 var listaAluno = alunosUp.Where(a => a.Nome.Contains('M')).ToList();
 
+Console.WriteLine("-----------ToList()--------------");
 foreach (var aluno in listaAluno)
 {
     Console.WriteLine(aluno.Nome);
+}
+
+var listaAlunoArray = alunosUp.Where(a => a.Nome.Contains('a')).ToArray();
+
+Console.WriteLine("-------------ToArray()--------------");
+foreach (var aluno in listaAlunoArray)
+{
+    Console.WriteLine(aluno.Nome);
+}
+
+IEnumerable<Pacote> pacotes = new List<Pacote>
+{
+    new Pacote { Empresa = "VV Tech", Peso = 25.2},
+    new Pacote { Empresa = "VP LTDA", Peso = 18.7},
+    new Pacote { Empresa = "TMP SP", Peso = 33.8}
+}.AsEnumerable();
+
+var empresas = pacotes.Select(pct => pct.Empresa).ToArray();
+
+foreach (var empres in empresas)
+{
+    Console.WriteLine(empres);
 }
 
 //ExemploInnerJoin();
