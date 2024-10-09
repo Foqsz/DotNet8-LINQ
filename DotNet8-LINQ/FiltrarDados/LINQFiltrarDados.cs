@@ -878,7 +878,23 @@ var listaDic = alunosDic.ToDictionary<Aluno, int>(a => a.Id);
 foreach (var chave in listaDic.Keys)
 {
     Console.WriteLine($"Chave: {chave}, Valor: {(listaDic[chave] as Aluno).Nome}");
-} 
+}
+
+var funcionariosAtt = FonteDeDados.GetFuncionariosAtt();
+
+//Agrupar por cidade
+var funcionarioPorCidade = funcionariosAtt.ToLookup(x => x.Cidade); //aqui o lambda vai pro foreach como key
+
+Console.WriteLine("Funcionarios agrupados por Cidade");
+
+foreach (var funci in funcionarioPorCidade)
+{
+    Console.WriteLine("Key: " + funci.Key);
+    foreach (var item in funcionarioPorCidade[funci.Key])
+    {
+        Console.WriteLine("\t" + item.Nome + "\t Ocupação: " + item.Cargo);
+    }
+}
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();

@@ -192,7 +192,7 @@ public class FonteDeDados
             new Aluno() { Id = 14, Nome = "Marcos", Curso = "Phyton" },
             new Aluno() { Id = 15, Nome = "Luis", Curso = "PHP" },
             new Aluno() { Id = 16, Nome = "Dina", Curso = "C#" }
-        }; 
+        };
     }
 
     public static IEnumerable<Aluno> GetAlunosUp()
@@ -219,5 +219,19 @@ public class FonteDeDados
         return alunos.AsEnumerable();
     }
 
+    public static IEnumerable<Funcionario> GetFuncionariosAtt()
+    {
+        List<Funcionario> funcionarios = new()
+        {
+            new Funcionario() { Nome = "Maria", Cidade = "Sapé", Cargo = "Admin" },
+            new Funcionario() { Nome = "Manoel", Cidade = "SantaRita", Cargo = "Assistente" },
+            new Funcionario() { Nome = "Amanda", Cidade = "JoãoPessoa", Cargo = "Vendedor" },
+            new Funcionario() { Nome = "Carlos", Cidade = "CruzDoEspiritoSanto", Cargo = "Vendedor" },
+            new Funcionario() { Nome = "Alicia", Cidade = "Conde", Cargo = "Caixa" },
+            new Funcionario() { Nome = "Pedro", Cidade = "CampinaGrande", Cargo = "Operador" },
+            new Funcionario() { Nome = "Victor", Cidade = "Mari", Cargo = "Gerente" },
+        };
+        return funcionarios.AsEnumerable();
+    }
 
 }

@@ -11,5 +11,7 @@ namespace DotNet8_LINQ.FiltrarDados
         public string Nome { get; set; } = string.Empty;
         public int Idade { get; set; }
         public decimal Salario { get; set; }
+        public string? Cargo { get; set; }
+        public string? Cidade { get; set; }
     }
 }
