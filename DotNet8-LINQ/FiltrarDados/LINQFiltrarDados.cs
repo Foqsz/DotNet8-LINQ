@@ -871,6 +871,15 @@ foreach (var empres in empresas)
     Console.WriteLine(empres);
 }
 
+var alunosDic = FonteDeDados.GetAlunosUp(); //IEnumerable
+
+var listaDic = alunosDic.ToDictionary<Aluno, int>(a => a.Id);
+
+foreach (var chave in listaDic.Keys)
+{
+    Console.WriteLine($"Chave: {chave}, Valor: {(listaDic[chave] as Aluno).Nome}");
+} 
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
