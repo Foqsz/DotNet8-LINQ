@@ -828,9 +828,25 @@ var resultadoes = estados.Zip(siglas, (x, y) => x + "-" + y);
 foreach (var item in resultadoes)
 {
     Console.WriteLine(item);
+} 
+
+string[] paises = { "US", "UK", "India", "Russia", "China", "Brasil", "Peru" };
+
+var resultadoPs = paises.ToList();
+
+foreach (string pais in resultadoPs)
+{
+    Console.WriteLine(pais);
 }
 
+var alunosUp = FonteDeDados.GetAlunosUp();
 
+var listaAluno = alunosUp.Where(a => a.Nome.Contains('M')).ToList();
+
+foreach (var aluno in listaAluno)
+{
+    Console.WriteLine(aluno.Nome);
+}
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
