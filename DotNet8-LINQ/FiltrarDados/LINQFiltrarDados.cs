@@ -5,6 +5,7 @@ using DotNet8_LINQ.FiltrarDados;
 using DotNet8_LINQ.OperadoresDeQuantificacao;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 Console.WriteLine("LINQ");
 Console.WriteLine("Filtrar Dados");
@@ -912,6 +913,35 @@ foreach (var p in paisesEm)
 {
     Console.Write(p + " ");
 }
+
+List<int> numerosQuery = new List<int> { 78, 92, 100, 37, 81 };
+
+IQueryable<int> resultadoQuery = numerosQuery.AsQueryable();
+
+Expression expressionTree = resultadoQuery.Expression;
+
+Console.WriteLine("O NodeType da árvore de expressão é : " + expressionTree.NodeType.ToString());
+
+Console.WriteLine("O Tipo da árvore expressão é : " + expressionTree.Type.Name);
+
+foreach (var n in resultadoQuery)
+{
+    Console.WriteLine(n);
+}
+
+var numerosQ = new int[] { 5, 10, 20, 60, 72, 90, 102, 114 };
+
+double media = Queryable.Average(numerosQ.AsQueryable());
+int soma = Queryable.Sum(numerosQ.AsQueryable());
+int conta = Queryable.Count(numerosQ.AsQueryable()); 
+int maximo = Queryable.Max(numerosQ.AsQueryable()); 
+int minimo = Queryable.Min(numerosQ.AsQueryable());
+
+Console.WriteLine($"quantidade: {conta}");
+Console.WriteLine($"soma: {soma}");
+Console.WriteLine($"média: {media}");
+Console.WriteLine($"mínimo: {minimo}");
+Console.WriteLine($"máximo: {maximo}");
 
 //ExemploInnerJoin();
 //ExemploLeftJoin();
