@@ -791,6 +791,14 @@ static IEnumerable<int> GetData()
     return null;
 }
 
+Console.WriteLine("LINQ - APPEND, PREPEND E ZIP");
+
+List<int> NumerosAppend = new List<int> { 1, 2, 3, 4 };
+
+var resultAppend = NumerosAppend.Append(5).ToList();
+
+Console.WriteLine(string.Join(", ", resultAppend));
+
 //ExemploInnerJoin();
 //ExemploLeftJoin();
 //ExemploRightJoin();
